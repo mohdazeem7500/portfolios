@@ -1341,6 +1341,126 @@
     }
   }
 
+
+
+  /* ── EMPLOYER MODE / PREMIUM COMMAND CENTER ── */
+  .employer-mode-btn {
+    display:inline-flex; align-items:center; gap:7px; height:38px; padding:0 14px;
+    border:1px solid rgba(56,189,248,.32); border-radius:10px;
+    background:linear-gradient(135deg,rgba(56,189,248,.11),rgba(167,139,250,.09));
+    color:var(--accent); font:600 .76rem 'JetBrains Mono',monospace; cursor:pointer;
+    white-space:nowrap; transition:.25s ease; position:relative; overflow:hidden;
+  }
+  .employer-mode-btn:hover { transform:translateY(-2px); color:#fff; background:var(--accent); border-color:var(--accent); box-shadow:0 10px 28px var(--glow); }
+  .rm-live-dot { width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;box-shadow:0 0 10px var(--green);animation:rmPulse 1.7s infinite; }
+  @keyframes rmPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.45;transform:scale(.72)} }
+  .mobile-employer-btn { width:100%;padding:11px 14px;border:1px solid var(--border2);border-radius:10px;background:var(--glow2);color:var(--accent);font:600 .88rem 'JetBrains Mono',monospace;cursor:pointer;text-align:left; }
+
+  .employer-overlay {
+    position:fixed; inset:0; z-index:1000; padding:76px 18px 20px;
+    background:rgba(2,6,14,.90); backdrop-filter:blur(24px);
+    opacity:0; visibility:hidden; pointer-events:none; overflow-y:auto;
+    transition:opacity .35s ease,visibility .35s ease;
+  }
+  .employer-overlay::before {
+    content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;
+    background-image:linear-gradient(rgba(56,189,248,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,.07) 1px,transparent 1px);
+    background-size:44px 44px; mask-image:linear-gradient(to bottom,black,transparent 85%);
+  }
+  .employer-overlay.open { opacity:1;visibility:visible;pointer-events:auto; }
+  .employer-shell {
+    width:min(1140px,100%);margin:0 auto;position:relative;overflow:hidden;
+    border:1px solid rgba(56,189,248,.20);border-radius:25px;
+    background:radial-gradient(circle at 8% 0%,rgba(56,189,248,.10),transparent 30%),radial-gradient(circle at 95% 95%,rgba(167,139,250,.08),transparent 30%),var(--card-bg);
+    box-shadow:0 40px 110px rgba(0,0,0,.58),0 0 90px rgba(56,189,248,.07);
+    transform:translateY(28px) scale(.975); transition:transform .45s cubic-bezier(.2,.8,.2,1);
+  }
+  .employer-overlay.open .employer-shell { transform:translateY(0) scale(1); }
+  .employer-topbar {
+    height:56px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;
+    border-bottom:1px solid var(--border);background:rgba(8,12,20,.42);
+  }
+  .employer-brand { display:flex;align-items:center;gap:9px;color:var(--accent);font:700 .68rem 'JetBrains Mono',monospace;letter-spacing:.13em; }
+  .employer-brand small { color:var(--text3);font-size:.58rem;letter-spacing:.06em; }
+  .employer-top-actions { display:flex;align-items:center;gap:8px; }
+  .rm-shortcut { border:1px solid var(--border);border-radius:6px;padding:3px 6px;color:var(--text3);font:600 .55rem 'JetBrains Mono',monospace; }
+  .employer-close { width:35px;height:35px;border:1px solid var(--border2);border-radius:9px;background:var(--surface);color:var(--text2);cursor:pointer;transition:.25s; }
+  .employer-close:hover { color:#fff;background:#ef4444;border-color:#ef4444;transform:rotate(90deg); }
+
+  .employer-content { padding:24px 26px 18px; }
+  .rm-hero { position:relative;display:flex;align-items:center;justify-content:space-between;gap:25px;padding:2px 0 24px;overflow:hidden; }
+  .rm-hero-glow { position:absolute;width:240px;height:150px;left:-80px;top:-80px;background:var(--accent);filter:blur(85px);opacity:.10;pointer-events:none; }
+  .employer-profile { display:flex;align-items:center;gap:16px;position:relative; }
+  .employer-photo-wrap { width:76px;height:76px;flex:0 0 76px;padding:3px;border-radius:50%;position:relative;background:linear-gradient(135deg,var(--accent),var(--purple));box-shadow:0 0 30px var(--glow2); }
+  .employer-photo-wrap::before { content:"";position:absolute;inset:-5px;border:1px solid rgba(56,189,248,.25);border-radius:50%;animation:rmRing 2.8s linear infinite; }
+  @keyframes rmRing { to{transform:rotate(360deg)} }
+  .employer-photo-wrap img { width:100%;height:100%;display:block;border-radius:50%;object-fit:cover;object-position:center 25%;background:var(--surface); }
+  .rm-identity .employer-kicker { display:flex;align-items:center;gap:7px;color:var(--accent);font:700 .62rem 'JetBrains Mono',monospace;letter-spacing:.14em;margin-bottom:4px; }
+  .rm-identity .employer-kicker span { width:18px;height:1px;background:var(--accent);display:inline-block; }
+  .employer-profile h2 { font:800 clamp(1.6rem,3.2vw,2.35rem) 'Syne',sans-serif;letter-spacing:-.045em;line-height:1; }
+  .employer-profile h2 strong { color:var(--accent);font-weight:800; }
+  .employer-profile p { color:var(--text2);font-size:.82rem;margin-top:5px; }
+  .employer-location { display:flex;align-items:center;flex-wrap:wrap;gap:7px;color:var(--text3);font-size:.67rem;margin-top:7px; }
+  .employer-location i { color:var(--accent); }
+
+  .rm-headline { text-align:right;max-width:320px;font-family:'Syne',sans-serif;font-size:.86rem;color:var(--text2);line-height:1.4; }
+  .rm-headline b { display:block;color:var(--text);font-size:1.1rem; }
+  .rm-headline b::after { content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--accent);margin-left:7px;box-shadow:0 0 10px var(--accent);animation:rmPulse 1.4s infinite; }
+
+  .rm-metrics { display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:25px; }
+  .rm-metric { display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--border);border-radius:13px;background:rgba(13,18,32,.42);position:relative;overflow:hidden;animation:rmCardIn .55s both; }
+  .rm-metric:nth-child(2){animation-delay:.07s}.rm-metric:nth-child(3){animation-delay:.14s}.rm-metric:nth-child(4){animation-delay:.21s}
+  @keyframes rmCardIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+  .rm-metric::after { content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent);transform:translateX(-100%);animation:rmScan 3.2s linear infinite; }
+  @keyframes rmScan { to{transform:translateX(100%)} }
+  .rm-metric-icon { width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:9px;background:rgba(56,189,248,.10);border:1px solid rgba(56,189,248,.18);color:var(--accent); }
+  .rm-metric-icon.purple{color:var(--purple);background:rgba(167,139,250,.10);border-color:rgba(167,139,250,.18)}
+  .rm-metric-icon.green{color:var(--green);background:rgba(52,211,153,.10);border-color:rgba(52,211,153,.18)}
+  .rm-metric-icon.orange{color:#fb923c;background:rgba(251,146,60,.10);border-color:rgba(251,146,60,.18)}
+  .rm-metric strong{display:block;font:700 .73rem 'Syne',sans-serif}.rm-metric small{color:var(--text3);font-size:.59rem}
+
+  .rm-section-head { display:flex;align-items:end;justify-content:space-between;margin:0 1px 11px; }
+  .rm-section-head > div span { color:var(--accent);font:700 .60rem 'JetBrains Mono',monospace;letter-spacing:.13em; }
+  .rm-section-head h3 { font:800 1.05rem 'Syne',sans-serif;margin-top:3px; }
+  .rm-section-head > i { color:var(--text3);font-size:1.1rem; }
+  .rm-section-head small { color:var(--text3);font:500 .62rem 'JetBrains Mono',monospace; }
+
+  .rm-capabilities { display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:25px; }
+  .rm-capability { position:relative;display:flex;gap:10px;align-items:center;min-height:88px;padding:13px;border:1px solid var(--border);border-radius:14px;background:rgba(13,18,32,.42);overflow:hidden;transition:.28s; }
+  .rm-capability:hover { transform:translateY(-4px);border-color:var(--border2);background:rgba(20,28,44,.65); }
+  .rm-capability::before { content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent,rgba(255,255,255,.035),transparent);transform:translateX(-110%);transition:.5s; }
+  .rm-capability:hover::before { transform:translateX(110%); }
+  .rm-cap-icon { width:35px;height:35px;flex:0 0 35px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:var(--accent);background:rgba(56,189,248,.10);border:1px solid rgba(56,189,248,.17); }
+  .rm-cap-icon.purple{color:var(--purple);background:rgba(167,139,250,.10);border-color:rgba(167,139,250,.17)}
+  .rm-cap-icon.green{color:var(--green);background:rgba(52,211,153,.10);border-color:rgba(52,211,153,.17)}
+  .rm-cap-icon.orange{color:#fb923c;background:rgba(251,146,60,.10);border-color:rgba(251,146,60,.17)}
+  .rm-capability h4{font:700 .72rem 'Syne',sans-serif}.rm-capability p{color:var(--text3);font-size:.60rem;line-height:1.4;margin-top:3px}.rm-arrow{position:absolute;right:9px;top:8px;color:var(--text3);font-size:.75rem}
+
+  .projects-head { margin-top:2px; }
+  .employer-projects { display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px; }
+  .employer-project { position:relative;display:flex;gap:11px;padding:15px;border:1px solid var(--border);border-radius:15px;background:rgba(13,18,32,.42);overflow:hidden;transition:.28s; }
+  .employer-project:hover { transform:translateY(-4px);border-color:var(--border2);box-shadow:0 14px 35px rgba(0,0,0,.18); }
+  .employer-project-icon { width:39px;height:39px;flex:0 0 39px;display:flex;align-items:center;justify-content:center;border-radius:11px;color:var(--accent);background:rgba(56,189,248,.10);border:1px solid rgba(56,189,248,.18); }
+  .employer-project-icon.purple{color:var(--purple);background:rgba(167,139,250,.10);border-color:rgba(167,139,250,.18)}
+  .employer-project-icon.green{color:var(--green);background:rgba(52,211,153,.10);border-color:rgba(52,211,153,.18)}
+  .rm-project-no{color:var(--text3);font:600 .53rem 'JetBrains Mono',monospace;letter-spacing:.10em;margin-bottom:3px}
+  .employer-project h3{font:700 .80rem 'Syne',sans-serif;line-height:1.25}.employer-project p{color:var(--text3);font-size:.61rem;line-height:1.45;margin:5px 0 8px}.employer-tags{display:flex;flex-wrap:wrap;gap:4px}.employer-tags span{padding:3px 6px;border-radius:6px;border:1px solid var(--border2);background:var(--glow2);color:var(--text2);font:500 .54rem 'JetBrains Mono',monospace}
+  .rm-project-line { position:absolute;left:0;bottom:0;width:100%;height:1px;background:linear-gradient(90deg,var(--accent),transparent);transform:scaleX(.2);transform-origin:left;transition:.3s; }.employer-project:hover .rm-project-line{transform:scaleX(1)}
+
+  .rm-bottom { display:grid;grid-template-columns:1.1fr .9fr;gap:10px; }
+  .employer-panel{border:1px solid var(--border);border-radius:14px;background:rgba(13,18,32,.42);padding:15px}
+  .employer-panel-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;color:var(--text);font:700 .70rem 'Syne',sans-serif}.employer-panel-title i{color:var(--accent);margin-right:5px}.employer-panel-title small{color:var(--text3);font:600 .52rem 'JetBrains Mono',monospace}
+  .credential-row{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--text2);font-size:.65rem;padding:7px 0;border-bottom:1px solid var(--border)}.credential-row:last-child{border-bottom:0;padding-bottom:0}.credential-row b{color:var(--accent);font-weight:500;text-align:right}
+  .employer-action-buttons{display:grid;grid-template-columns:1fr 1fr;gap:7px}.employer-action{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:34px;padding:7px 8px;border:1px solid var(--border2);border-radius:8px;background:var(--surface2);color:var(--text2);text-decoration:none;font:600 .60rem 'JetBrains Mono',monospace;transition:.2s}.employer-action:hover,.employer-action.primary{color:#fff;background:var(--accent);border-color:var(--accent)}
+  .rm-footer-line{display:flex;justify-content:space-between;gap:15px;margin-top:14px;padding-top:12px;border-top:1px solid var(--border);color:var(--text3);font:600 .53rem 'JetBrains Mono',monospace;letter-spacing:.08em}.rm-footer-line i{font-size:.4rem;color:var(--green);vertical-align:middle;margin-right:5px}.rm-footer-line b{color:var(--accent)}
+
+  @media (max-width:1000px){
+    .employer-mode-btn{display:none}.rm-headline{display:none}.rm-capabilities{grid-template-columns:1fr 1fr}.employer-projects{grid-template-columns:1fr}.rm-metrics{grid-template-columns:1fr 1fr}.rm-bottom{grid-template-columns:1fr}
+  }
+  @media (max-width:600px){
+    .employer-overlay{padding:70px 8px 12px}.employer-content{padding:18px 14px}.employer-brand small,.rm-shortcut{display:none}.employer-profile{align-items:flex-start}.employer-photo-wrap{width:62px;height:62px;flex-basis:62px}.employer-profile h2{font-size:1.45rem}.employer-profile p{font-size:.70rem}.employer-location{font-size:.59rem}.rm-capabilities{grid-template-columns:1fr}.rm-metrics{grid-template-columns:1fr 1fr}.employer-action-buttons{grid-template-columns:1fr}.rm-footer-line{flex-direction:column;gap:5px}
+  }
+
 </style>
 
 
@@ -1824,6 +1944,845 @@ nav a.nav-logo.profile-logo img.nav-profile-photo{width:58px!important;height:58
   display: none !important;
 }
 </style>
+
+<style id="employer-mode-premium-upgrade">
+/* ───────── EMPLOYER MODE — PREMIUM EXECUTIVE UPGRADE ───────── */
+#employerOverlay{
+  background:
+    radial-gradient(900px 500px at 8% 5%, rgba(56,189,248,.12), transparent 65%),
+    radial-gradient(700px 500px at 92% 92%, rgba(99,102,241,.10), transparent 65%),
+    rgba(3,7,18,.96) !important;
+  backdrop-filter: blur(18px);
+}
+#employerOverlay .employer-shell{
+  width:min(1180px,94vw) !important;
+  max-height:92vh !important;
+  overflow:auto !important;
+  border:1px solid rgba(148,163,184,.18) !important;
+  border-radius:28px !important;
+  background:linear-gradient(145deg,rgba(15,23,42,.96),rgba(8,15,29,.94)) !important;
+  box-shadow:0 30px 100px rgba(0,0,0,.55), inset 0 1px rgba(255,255,255,.06) !important;
+  position:relative;
+}
+#employerOverlay .employer-shell:before{
+  content:""; position:absolute; inset:0; pointer-events:none; border-radius:28px;
+  background:linear-gradient(120deg,rgba(56,189,248,.10),transparent 30%,transparent 70%,rgba(129,140,248,.08));
+}
+#employerOverlay .employer-topbar{
+  position:sticky; top:0; z-index:5;
+  background:rgba(8,15,29,.82) !important;
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(148,163,184,.10) !important;
+}
+#employerOverlay .employer-profile-card,
+#employerOverlay .employer-section-card,
+#employerOverlay .employer-project-card,
+#employerOverlay .employer-metric{
+  border:1px solid rgba(148,163,184,.14) !important;
+  background:linear-gradient(145deg,rgba(30,41,59,.72),rgba(15,23,42,.72)) !important;
+  box-shadow:0 14px 40px rgba(0,0,0,.20), inset 0 1px rgba(255,255,255,.035) !important;
+  transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease !important;
+}
+#employerOverlay .employer-profile-card:hover,
+#employerOverlay .employer-section-card:hover,
+#employerOverlay .employer-project-card:hover,
+#employerOverlay .employer-metric:hover{
+  transform:translateY(-4px);
+  border-color:rgba(56,189,248,.34) !important;
+  box-shadow:0 20px 55px rgba(0,0,0,.28),0 0 28px rgba(56,189,248,.07) !important;
+}
+#employerOverlay .employer-avatar{
+  box-shadow:0 0 0 1px rgba(56,189,248,.45),0 0 34px rgba(56,189,248,.16) !important;
+}
+#employerOverlay .employer-status{
+  letter-spacing:.12em !important;
+  text-transform:uppercase;
+}
+#employerOverlay .employer-metric-value{
+  font-family:"JetBrains Mono",monospace !important;
+}
+#employerOverlay .employer-project-card{
+  position:relative;
+  overflow:hidden;
+}
+#employerOverlay .employer-project-card:after{
+  content:""; position:absolute; width:140px; height:140px; right:-70px; top:-70px;
+  border-radius:50%; background:rgba(56,189,248,.08); filter:blur(2px);
+}
+#employerOverlay .employer-chip{
+  transition:transform .25s ease,background .25s ease,border-color .25s ease !important;
+}
+#employerOverlay .employer-chip:hover{
+  transform:translateY(-2px);
+  background:rgba(56,189,248,.12) !important;
+  border-color:rgba(56,189,248,.30) !important;
+}
+#employerOverlay .employer-close{
+  transition:transform .25s ease,background .25s ease !important;
+}
+#employerOverlay .employer-close:hover{
+  transform:rotate(90deg);
+}
+@keyframes employerScan{
+  0%{transform:translateX(-120%);opacity:0}
+  15%{opacity:.7}
+  50%{opacity:.15}
+  100%{transform:translateX(120%);opacity:0}
+}
+#employerOverlay .employer-shell:after{
+  content:""; position:absolute; left:0; right:0; top:0; height:1px;
+  background:linear-gradient(90deg,transparent,#38bdf8,transparent);
+  animation:employerScan 5s ease-in-out infinite;
+  pointer-events:none;
+}
+@media(max-width:700px){
+  #employerOverlay .employer-shell{width:96vw!important;border-radius:20px!important}
+  #employerOverlay .employer-topbar{padding:14px!important}
+}
+</style>
+
+
+
+
+
+<style id="main-how-i-add-value">
+/* HOW I ADD VALUE — MAIN PORTFOLIO SECTION */
+.hiav-section{
+  padding:110px 0 95px;
+  position:relative;
+  overflow:hidden;
+}
+.hiav-section .section-kicker{
+  font-family:"JetBrains Mono",monospace;
+  font-size:13px;
+  letter-spacing:.18em;
+  color:var(--accent);
+  margin-bottom:14px;
+  font-weight:500;
+}
+.hiav-title{
+  margin:0;
+  font-family:"Syne",sans-serif;
+  font-size:clamp(42px,5.3vw,76px);
+  line-height:.96;
+  letter-spacing:-.055em;
+  font-weight:800;
+  color:var(--text);
+}
+.hiav-title .hiav-accent{color:var(--accent)}
+.hiav-underline{
+  width:76px;height:4px;border-radius:99px;
+  margin-top:25px;
+  background:linear-gradient(90deg,var(--accent),rgba(56,189,248,0));
+  box-shadow:0 0 18px rgba(56,189,248,.35);
+}
+.hiav-intro{
+  max-width:700px;
+  margin:20px 0 0;
+  color:var(--text2);
+  font-size:15px;
+  line-height:1.75;
+}
+.hiav-flow{
+  position:relative;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:18px;
+  margin-top:52px;
+}
+.hiav-step{
+  position:relative;
+  min-height:230px;
+  padding:25px 22px 22px;
+  border:1px solid var(--border2);
+  border-radius:20px;
+  background:linear-gradient(145deg,rgba(21,30,45,.88),rgba(13,18,32,.88));
+  box-shadow:0 18px 45px rgba(0,0,0,.16),inset 0 1px rgba(255,255,255,.035);
+  overflow:hidden;
+  transform:translateY(24px);
+  opacity:0;
+  animation:hiavStepIn .7s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.hiav-step:nth-child(1){animation-delay:.08s}
+.hiav-step:nth-child(2){animation-delay:.18s}
+.hiav-step:nth-child(3){animation-delay:.28s}
+.hiav-step:nth-child(4){animation-delay:.38s}
+.hiav-step:nth-child(5){animation-delay:.48s}
+.hiav-step:before{
+  content:"";
+  position:absolute;
+  left:0;right:0;top:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  transform:translateX(-110%);
+  opacity:.7;
+}
+.hiav-step:hover:before{animation:hiavScan 1.1s ease}
+.hiav-step:hover{
+  transform:translateY(-7px);
+  border-color:rgba(56,189,248,.42);
+  box-shadow:0 24px 55px rgba(0,0,0,.24),0 0 30px rgba(56,189,248,.08);
+}
+.hiav-number{
+  font-family:"JetBrains Mono",monospace;
+  font-size:11px;
+  letter-spacing:.16em;
+  color:var(--accent);
+}
+.hiav-icon{
+  width:54px;height:54px;
+  display:grid;place-items:center;
+  margin:23px 0 20px;
+  border-radius:16px;
+  border:1px solid rgba(56,189,248,.20);
+  background:rgba(56,189,248,.07);
+  color:var(--accent);
+  font-size:20px;
+  transition:transform .35s ease,box-shadow .35s ease;
+}
+.hiav-step:hover .hiav-icon{
+  transform:translateY(-3px) rotate(-3deg);
+  box-shadow:0 0 25px rgba(56,189,248,.14);
+}
+.hiav-step h3{
+  margin:0;
+  font-family:"Syne",sans-serif;
+  font-size:20px;
+  color:var(--text);
+  font-weight:700;
+}
+.hiav-step p{
+  margin:9px 0 0;
+  color:var(--text2);
+  font-size:12px;
+  line-height:1.65;
+}
+.hiav-connector{
+  position:absolute;
+  top:104px;
+  left:9%;
+  right:9%;
+  height:1px;
+  z-index:0;
+  background:linear-gradient(90deg,transparent,rgba(56,189,248,.28),transparent);
+  pointer-events:none;
+}
+.hiav-step{z-index:1}
+.hiav-value-strip{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin:34px auto 0;
+  padding:13px 18px;
+  width:max-content;
+  max-width:100%;
+  border:1px solid var(--border2);
+  border-radius:999px;
+  background:rgba(56,189,248,.045);
+  color:var(--text2);
+  font-family:"JetBrains Mono",monospace;
+  font-size:11px;
+  letter-spacing:.06em;
+}
+.hiav-value-strip i{color:var(--accent)}
+@keyframes hiavStepIn{
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes hiavScan{
+  from{transform:translateX(-110%)}
+  to{transform:translateX(110%)}
+}
+@media(max-width:1050px){
+  .hiav-flow{grid-template-columns:repeat(3,1fr)}
+  .hiav-connector{display:none}
+}
+@media(max-width:700px){
+  .hiav-section{padding:80px 0 70px}
+  .hiav-flow{grid-template-columns:1fr;gap:14px;margin-top:38px}
+  .hiav-step{min-height:190px}
+  .hiav-value-strip{border-radius:16px;text-align:center;line-height:1.5}
+}
+@media(prefers-reduced-motion:reduce){
+  .hiav-step{animation:none;opacity:1;transform:none}
+}
+</style>
+
+
+<style id="how-i-add-value-alignment-fix">
+/* Match How I Add Value to the existing portfolio section system */
+.hiav-section{
+  padding:90px 5%;
+  position:relative;
+  overflow:hidden;
+  background:var(--bg);
+}
+.hiav-section > .container{
+  max-width:1200px;
+  margin:0 auto;
+}
+.hiav-section .section-header{
+  max-width:1200px;
+  margin:0 auto 3.5rem;
+}
+.hiav-section .section-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.75rem;
+  color:var(--accent);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  margin-bottom:.5rem;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.hiav-section .section-label::before{
+  content:'//';
+  opacity:.5;
+}
+.hiav-section .hiav-title{
+  margin:0;
+  font-family:'Syne',sans-serif;
+  font-size:clamp(1.8rem,3.5vw,2.6rem);
+  font-weight:800;
+  letter-spacing:-.04em;
+  line-height:1.1;
+  color:var(--text);
+}
+.hiav-section .hiav-title .accent{color:var(--accent)}
+.hiav-section .section-divider{
+  width:60px;
+  height:3px;
+  margin-top:1rem;
+  background:linear-gradient(90deg,var(--accent),transparent);
+  border-radius:2px;
+}
+.hiav-intro{
+  max-width:700px;
+  margin:-1.8rem 0 0;
+  color:var(--text2);
+  font-size:14px;
+  line-height:1.7;
+}
+.hiav-flow{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:1.2rem;
+  margin-top:2.4rem;
+}
+.hiav-step{
+  min-width:0;
+  min-height:210px;
+  padding:1.4rem 1.5rem;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:var(--card-bg);
+  box-shadow:none;
+}
+.hiav-step:hover{
+  border-color:var(--accent);
+  transform:translateY(-4px);
+  box-shadow:0 12px 40px var(--glow2);
+}
+.hiav-number{
+  font-size:.68rem;
+  letter-spacing:.12em;
+}
+.hiav-icon{
+  width:42px;
+  height:42px;
+  margin:18px 0 15px;
+  border-radius:12px;
+  font-size:17px;
+}
+.hiav-step h3{
+  font-size:17px;
+  line-height:1.25;
+}
+.hiav-step p{
+  margin-top:7px;
+  font-size:12px;
+  line-height:1.55;
+}
+.hiav-connector{display:none}
+.hiav-value-strip{
+  width:auto;
+  max-width:700px;
+  margin:28px auto 0;
+  padding:11px 16px;
+  border-radius:12px;
+  text-align:center;
+  line-height:1.5;
+  font-size:10px;
+}
+@media(max-width:1050px){
+  .hiav-flow{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .hiav-section{padding:70px 5%}
+  .hiav-section .section-header{margin-bottom:2.5rem}
+  .hiav-intro{margin:-1rem 0 0}
+  .hiav-flow{grid-template-columns:1fr;gap:1rem;margin-top:1.8rem}
+  .hiav-step{min-height:175px}
+}
+</style>
+
+
+<style id="how-i-add-value-motion-v2">
+/* Animated How I Add Value — matches portfolio motion language */
+.hiav-section .section-header{
+  animation:hiavHeaderReveal .8s cubic-bezier(.2,.8,.2,1) both;
+}
+.hiav-section .hiav-intro{
+  animation:hiavIntroReveal .8s .16s cubic-bezier(.2,.8,.2,1) both;
+}
+.hiav-section .hiav-step{
+  animation:hiavCardReveal .65s cubic-bezier(.2,.8,.2,1) both;
+  animation-delay:calc(.12s * var(--hiav-index, 1));
+}
+.hiav-section .hiav-step:nth-child(2){--hiav-index:1}
+.hiav-section .hiav-step:nth-child(3){--hiav-index:2}
+.hiav-section .hiav-step:nth-child(4){--hiav-index:3}
+.hiav-section .hiav-step:nth-child(5){--hiav-index:4}
+.hiav-section .hiav-step:nth-child(6){--hiav-index:5}
+
+.hiav-section .hiav-icon{
+  animation:hiavIconFloat 2.8s ease-in-out infinite;
+  animation-delay:calc(.12s * var(--hiav-index, 1) + .6s);
+}
+.hiav-section .hiav-number{
+  animation:hiavNumberPulse 2.8s ease-in-out infinite;
+  animation-delay:calc(.12s * var(--hiav-index, 1) + .8s);
+}
+.hiav-section .hiav-value-strip{
+  animation:hiavStripIn .8s .65s cubic-bezier(.2,.8,.2,1) both;
+}
+.hiav-section .hiav-step:hover .hiav-icon{
+  animation:hiavIconPop .5s ease both;
+}
+@keyframes hiavHeaderReveal{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes hiavIntroReveal{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes hiavCardReveal{
+  from{opacity:0;transform:translateY(24px) scale(.985)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes hiavIconFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-4px)}
+}
+@keyframes hiavNumberPulse{
+  0%,100%{opacity:.65}
+  50%{opacity:1}
+}
+@keyframes hiavStripIn{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes hiavIconPop{
+  0%{transform:scale(1)}
+  45%{transform:scale(1.12) rotate(-4deg)}
+  100%{transform:scale(1)}
+}
+.whatsapp-social{
+  border-color:rgba(34,197,94,.24)!important;
+}
+.whatsapp-social:hover{
+  border-color:rgba(34,197,94,.50)!important;
+  background:rgba(34,197,94,.10)!important;
+}
+.whatsapp-social i{
+  color:#22c55e!important;
+}
+@media(prefers-reduced-motion:reduce){
+  .hiav-section .section-header,
+  .hiav-section .hiav-intro,
+  .hiav-section .hiav-step,
+  .hiav-section .hiav-value-strip,
+  .hiav-section .hiav-icon,
+  .hiav-section .hiav-number{
+    animation:none!important;
+  }
+}
+</style>
+
+
+<style id="whatsapp-contact-style">
+.whatsapp-contact-item .contact-item-icon{
+  border-color:rgba(34,197,94,.28)!important;
+  background:rgba(34,197,94,.07)!important;
+}
+.whatsapp-contact-item .contact-item-icon i{color:#22c55e!important}
+.whatsapp-contact-item:hover{
+  border-color:rgba(34,197,94,.50)!important;
+}
+</style>
+
+
+<style id="employer-mode-theme-sync">
+/* Employer Mode follows the main portfolio theme */
+#employerOverlay{
+  color:var(--text)!important;
+  background:rgba(3,7,18,.72)!important;
+}
+:root[data-theme="light"] #employerOverlay{
+  background:rgba(226,232,240,.72)!important;
+}
+#employerOverlay .employer-shell{
+  color:var(--text)!important;
+  background:var(--card-bg)!important;
+  border-color:var(--border2)!important;
+  box-shadow:0 30px 100px rgba(0,0,0,.22), inset 0 1px rgba(255,255,255,.06)!important;
+}
+:root[data-theme="light"] #employerOverlay .employer-shell{
+  background:rgba(255,255,255,.96)!important;
+  box-shadow:0 25px 70px rgba(15,23,42,.16), inset 0 1px rgba(255,255,255,.8)!important;
+}
+#employerOverlay .employer-topbar{
+  background:var(--nav-bg)!important;
+  border-color:var(--border)!important;
+}
+#employerOverlay .employer-profile,
+#employerOverlay .employer-profile-card,
+#employerOverlay .employer-section-card,
+#employerOverlay .employer-project-card,
+#employerOverlay .employer-metric{
+  color:var(--text)!important;
+  background:var(--card-bg)!important;
+  border-color:var(--border)!important;
+}
+#employerOverlay .employer-shell h1,
+#employerOverlay .employer-shell h2,
+#employerOverlay .employer-shell h3,
+#employerOverlay .employer-shell strong{
+  color:var(--text)!important;
+}
+#employerOverlay .employer-shell p,
+#employerOverlay .employer-shell span:not(.employer-status-dot),
+#employerOverlay .employer-shell .employer-description{
+  color:var(--text2);
+}
+#employerOverlay .employer-chip,
+#employerOverlay .employer-contact-btn{
+  color:var(--text)!important;
+  background:var(--surface2)!important;
+  border-color:var(--border2)!important;
+}
+#employerOverlay .employer-close{
+  color:var(--text)!important;
+  background:var(--surface2)!important;
+  border-color:var(--border2)!important;
+}
+:root[data-theme="light"] #employerOverlay .employer-shell:before{
+  background:linear-gradient(120deg,rgba(2,132,199,.07),transparent 30%,transparent 70%,rgba(124,58,237,.05))!important;
+}
+</style>
+
+
+<style id="employer-mode-light-theme-final">
+/* FINAL LIGHT THEME SYNC — Employer Mode */
+html[data-theme="light"] .employer-overlay{
+  background:rgba(226,232,240,.88)!important;
+  color:var(--text)!important;
+}
+html[data-theme="light"] .employer-overlay::before{
+  opacity:.10!important;
+  background-image:
+    linear-gradient(rgba(2,132,199,.08) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(2,132,199,.08) 1px,transparent 1px)!important;
+}
+html[data-theme="light"] .employer-shell{
+  background:
+    radial-gradient(circle at 8% 0%,rgba(2,132,199,.08),transparent 30%),
+    radial-gradient(circle at 95% 95%,rgba(124,58,237,.06),transparent 30%),
+    rgba(255,255,255,.98)!important;
+  border-color:rgba(2,132,199,.18)!important;
+  box-shadow:0 35px 90px rgba(15,23,42,.16),0 0 60px rgba(2,132,199,.06)!important;
+}
+html[data-theme="light"] .employer-topbar{
+  background:rgba(248,250,252,.92)!important;
+  border-bottom-color:var(--border)!important;
+}
+html[data-theme="light"] .employer-brand,
+html[data-theme="light"] .rm-identity .employer-kicker,
+html[data-theme="light"] .rm-section-head > div span{
+  color:var(--accent)!important;
+}
+html[data-theme="light"] .employer-brand small,
+html[data-theme="light"] .rm-shortcut,
+html[data-theme="light"] .employer-location,
+html[data-theme="light"] .rm-section-head > i,
+html[data-theme="light"] .rm-section-head small,
+html[data-theme="light"] .rm-metric small,
+html[data-theme="light"] .rm-project-no,
+html[data-theme="light"] .employer-project p,
+html[data-theme="light"] .employer-panel-title small,
+html[data-theme="light"] .credential-row,
+html[data-theme="light"] .rm-footer-line{
+  color:var(--text3)!important;
+}
+html[data-theme="light"] .employer-profile h2,
+html[data-theme="light"] .rm-headline b,
+html[data-theme="light"] .rm-section-head h3,
+html[data-theme="light"] .rm-metric strong,
+html[data-theme="light"] .rm-capability h4,
+html[data-theme="light"] .employer-project h3,
+html[data-theme="light"] .employer-panel-title,
+html[data-theme="light"] .employer-close{
+  color:var(--text)!important;
+}
+html[data-theme="light"] .employer-profile p,
+html[data-theme="light"] .rm-headline,
+html[data-theme="light"] .rm-capability p,
+html[data-theme="light"] .employer-project p{
+  color:var(--text2)!important;
+}
+html[data-theme="light"] .rm-metric,
+html[data-theme="light"] .rm-capability,
+html[data-theme="light"] .employer-project,
+html[data-theme="light"] .employer-panel{
+  background:rgba(248,250,252,.88)!important;
+  border-color:var(--border)!important;
+}
+html[data-theme="light"] .rm-metric:hover,
+html[data-theme="light"] .rm-capability:hover,
+html[data-theme="light"] .employer-project:hover{
+  background:rgba(241,245,249,.98)!important;
+  border-color:var(--border2)!important;
+  box-shadow:0 14px 35px rgba(15,23,42,.10)!important;
+}
+html[data-theme="light"] .rm-metric-icon,
+html[data-theme="light"] .rm-cap-icon,
+html[data-theme="light"] .employer-project-icon{
+  background:rgba(2,132,199,.07)!important;
+  border-color:rgba(2,132,199,.18)!important;
+}
+html[data-theme="light"] .rm-metric-icon.purple,
+html[data-theme="light"] .rm-cap-icon.purple,
+html[data-theme="light"] .employer-project-icon.purple{
+  background:rgba(124,58,237,.07)!important;
+  border-color:rgba(124,58,237,.18)!important;
+}
+html[data-theme="light"] .rm-metric-icon.green,
+html[data-theme="light"] .rm-cap-icon.green,
+html[data-theme="light"] .employer-project-icon.green{
+  background:rgba(5,150,105,.07)!important;
+  border-color:rgba(5,150,105,.18)!important;
+}
+html[data-theme="light"] .rm-metric-icon.orange,
+html[data-theme="light"] .rm-cap-icon.orange,
+html[data-theme="light"] .employer-project-icon.orange{
+  background:rgba(234,88,12,.07)!important;
+  border-color:rgba(234,88,12,.18)!important;
+}
+html[data-theme="light"] .employer-tags span{
+  background:rgba(2,132,199,.04)!important;
+  color:var(--text2)!important;
+  border-color:var(--border2)!important;
+}
+html[data-theme="light"] .employer-close{
+  background:var(--surface)!important;
+  border-color:var(--border2)!important;
+}
+html[data-theme="light"] .employer-action{
+  background:var(--surface2)!important;
+  color:var(--text2)!important;
+  border-color:var(--border2)!important;
+}
+html[data-theme="light"] .employer-action:hover,
+html[data-theme="light"] .employer-action.primary{
+  color:#fff!important;
+  background:var(--accent)!important;
+  border-color:var(--accent)!important;
+}
+html[data-theme="light"] .rm-footer-line{
+  border-top-color:var(--border)!important;
+}
+</style>
+
+
+<style id="employer-one-screen-mode">
+/* EMPLOYER MODE — ONE SCREEN / NO INNER SCROLL */
+#employerOverlay{
+  padding:12px!important;
+  overflow:hidden!important;
+}
+#employerOverlay .employer-shell{
+  width:min(1320px,96vw)!important;
+  height:min(760px,calc(100vh - 24px))!important;
+  max-height:calc(100vh - 24px)!important;
+  overflow:hidden!important;
+  display:flex!important;
+  flex-direction:column!important;
+}
+#employerOverlay .employer-topbar{
+  flex:0 0 48px!important;
+  min-height:48px!important;
+  padding:0 18px!important;
+}
+#employerOverlay .employer-content{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  padding:18px 28px 16px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  gap:12px!important;
+}
+#employerOverlay .employer-profile{
+  flex:0 0 auto!important;
+  padding:12px 14px!important;
+  min-height:82px!important;
+}
+#employerOverlay .employer-profile img{
+  width:76px!important;
+  height:76px!important;
+}
+#employerOverlay .employer-profile h2{
+  font-size:clamp(25px,2.4vw,38px)!important;
+  margin:0!important;
+}
+#employerOverlay .employer-profile p{
+  font-size:11px!important;
+  margin:3px 0!important;
+}
+#employerOverlay .rm-headline{
+  font-size:14px!important;
+}
+#employerOverlay .rm-metrics{
+  grid-template-columns:repeat(4,1fr)!important;
+  gap:10px!important;
+}
+#employerOverlay .rm-metric{
+  min-height:58px!important;
+  padding:9px 12px!important;
+}
+#employerOverlay .rm-metric-icon{
+  width:34px!important;height:34px!important;
+}
+#employerOverlay .rm-metric strong{
+  font-size:13px!important;
+}
+#employerOverlay .rm-metric small{
+  font-size:9px!important;
+}
+#employerOverlay .rm-section{
+  margin-top:4px!important;
+}
+#employerOverlay .rm-section-head{
+  margin-bottom:7px!important;
+}
+#employerOverlay .rm-section-head h3{
+  font-size:20px!important;
+}
+#employerOverlay .rm-capabilities{
+  grid-template-columns:repeat(4,1fr)!important;
+  gap:10px!important;
+}
+#employerOverlay .rm-capability{
+  min-height:62px!important;
+  padding:10px!important;
+}
+#employerOverlay .rm-cap-icon{
+  width:32px!important;height:32px!important;
+}
+#employerOverlay .rm-capability h4{
+  font-size:12px!important;
+}
+#employerOverlay .rm-capability p{
+  font-size:9px!important;
+  line-height:1.3!important;
+  margin-top:2px!important;
+}
+#employerOverlay .employer-projects{
+  grid-template-columns:repeat(3,1fr)!important;
+  gap:10px!important;
+}
+#employerOverlay .employer-project{
+  min-height:70px!important;
+  padding:10px!important;
+}
+#employerOverlay .employer-project-icon{
+  width:32px!important;height:32px!important;
+}
+#employerOverlay .employer-project h3{
+  font-size:12px!important;
+}
+#employerOverlay .employer-project p{
+  font-size:9px!important;
+  line-height:1.25!important;
+  margin:2px 0!important;
+}
+#employerOverlay .employer-tags{
+  gap:3px!important;
+}
+#employerOverlay .employer-tags span{
+  font-size:8px!important;
+  padding:2px 5px!important;
+}
+#employerOverlay .rm-bottom-grid{
+  grid-template-columns:1fr 1fr!important;
+  gap:10px!important;
+}
+#employerOverlay .employer-panel{
+  padding:10px 12px!important;
+}
+#employerOverlay .employer-panel-title{
+  font-size:11px!important;
+}
+#employerOverlay .credential-row{
+  font-size:9px!important;
+  padding:3px 0!important;
+}
+#employerOverlay .employer-actions{
+  gap:6px!important;
+}
+#employerOverlay .employer-action{
+  min-height:30px!important;
+  padding:0 9px!important;
+  font-size:9px!important;
+}
+#employerOverlay .rm-footer{
+  display:none!important;
+}
+
+/* Compact heights for smaller laptop screens */
+@media (max-height:800px) and (min-width:701px){
+  #employerOverlay .employer-content{padding:12px 24px 10px!important;gap:8px!important}
+  #employerOverlay .employer-profile{min-height:68px!important;padding:8px 12px!important}
+  #employerOverlay .employer-profile img{width:62px!important;height:62px!important}
+  #employerOverlay .rm-section-head h3{font-size:17px!important}
+  #employerOverlay .rm-capability{min-height:55px!important;padding:7px 9px!important}
+  #employerOverlay .employer-project{min-height:62px!important;padding:7px 9px!important}
+}
+
+/* Mobile: still no scrolling inside Employer Mode; content is compacted. */
+@media (max-width:700px){
+  #employerOverlay{padding:6px!important}
+  #employerOverlay .employer-shell{
+    width:calc(100vw - 12px)!important;
+    height:calc(100vh - 12px)!important;
+    max-height:calc(100vh - 12px)!important;
+    border-radius:18px!important;
+  }
+  #employerOverlay .employer-content{
+    padding:10px 12px!important;
+    gap:7px!important;
+  }
+  #employerOverlay .employer-profile{min-height:62px!important}
+  #employerOverlay .employer-profile img{width:52px!important;height:52px!important}
+  #employerOverlay .employer-profile h2{font-size:21px!important}
+  #employerOverlay .rm-metrics{gap:6px!important}
+  #employerOverlay .rm-capabilities{grid-template-columns:repeat(2,1fr)!important}
+  #employerOverlay .employer-projects{grid-template-columns:1fr!important}
+  #employerOverlay .rm-bottom-grid{grid-template-columns:1fr!important}
+}
+</style>
+
 </head>
 <body>
 
@@ -1831,13 +2790,14 @@ nav a.nav-logo.profile-logo img.nav-profile-photo{width:58px!important;height:58
 
 <!-- NAV -->
 <nav>
-  <a href="#home" class="nav-logo profile-logo" aria-label="Mohd Azeem Home"><img src="assets/profile.jpg" class="nav-profile-photo" alt="Mohd Azeem profile photo"></a>
+  <a href="https://www.linkedin.com/in/mohd-azeem-508792397?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="nav-logo profile-logo" aria-label="Mohd Azeem Home"><img src="assets/profile.jpg" class="nav-profile-photo" alt="Mohd Azeem profile photo"></a>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
     <a href="#education">Education</a>
     <a href="#contact">Contact</a>
+    <button class="employer-mode-btn" id="employerModeBtn" title="Open Employer Mode"><i class="fa-solid fa-briefcase"></i> <span>Employer Mode</span></button>
     <button class="theme-btn" id="themeBtn" title="Toggle theme"><i class="fa-solid fa-moon"></i></button>
   </div>
   <div style="display:flex;gap:10px;align-items:center;" class="mobile-controls">
@@ -1848,12 +2808,182 @@ nav a.nav-logo.profile-logo img.nav-profile-photo{width:58px!important;height:58
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
+  <a href="#how-i-add-value" onclick="closeMobile()">How I Add Value</a>
   <a href="#about" onclick="closeMobile()">About</a>
   <a href="#skills" onclick="closeMobile()">Skills</a>
   <a href="#projects" onclick="closeMobile()">Projects</a>
   <a href="#education" onclick="closeMobile()">Education</a>
   <a href="#certifications" onclick="closeMobile()">Certifications</a>
   <a href="#contact" onclick="closeMobile()">Contact</a>
+  <button class="mobile-employer-btn" id="mobileEmployerModeBtn" onclick="openEmployerMode()">
+    <i class="fa-solid fa-bullseye"></i> Employer Mode
+  </button>
+</div>
+
+
+<!-- ── EMPLOYER COMMAND CENTER ── -->
+<div class="employer-overlay" id="employerOverlay" aria-hidden="true">
+  <div class="employer-shell">
+
+    <div class="employer-topbar">
+      <div class="employer-brand">
+        <span class="rm-live-dot"></span>
+        <span>EMPLOYER MODE</span>
+        <small>• PROFILE SNAPSHOT</small>
+      </div>
+      <div class="employer-top-actions">
+        <span class="rm-shortcut">ESC</span>
+        <button class="employer-close" id="employerCloseBtn" aria-label="Close Employer Mode">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="employer-content">
+
+      <div class="rm-hero">
+        <div class="rm-hero-glow"></div>
+        <div class="employer-profile">
+          <div class="employer-photo-wrap">
+            <span class="rm-photo-ring"></span>
+            <img src="assets/profile.jpg" alt="Mohd Azeem">
+          </div>
+          <div class="rm-identity">
+            <div class="employer-kicker"><span></span> DATA ANALYST</div>
+            <h2>Mohd <strong>Azeem</strong></h2>
+            <p>B.Com (Hons) · Certified Data Analyst</p>
+            <div class="employer-location">
+              <i class="fa-solid fa-location-dot"></i> Bareilly, Uttar Pradesh
+              <span>•</span>
+              <i class="fa-solid fa-circle-check"></i> Open to Data Analyst Opportunities
+            </div>
+          </div>
+        </div>
+
+        <div class="rm-headline">
+          <span>Turning raw data into</span>
+          <b>clear business insights.</b>
+        </div>
+      </div>
+
+      <div class="rm-metrics">
+        <div class="rm-metric">
+          <span class="rm-metric-icon"><i class="fa-solid fa-database"></i></span>
+          <div><strong>SQL</strong><small>Analysis</small></div>
+        </div>
+        <div class="rm-metric">
+          <span class="rm-metric-icon purple"><i class="fa-solid fa-chart-pie"></i></span>
+          <div><strong>Power BI</strong><small>Dashboards</small></div>
+        </div>
+        <div class="rm-metric">
+          <span class="rm-metric-icon green"><i class="fa-solid fa-file-excel"></i></span>
+          <div><strong>Excel</strong><small>Advanced</small></div>
+        </div>
+        <div class="rm-metric">
+          <span class="rm-metric-icon orange"><i class="fa-brands fa-python"></i></span>
+          <div><strong>Python</strong><small>Analytics</small></div>
+        </div>
+      </div>
+
+      <div class="rm-section-head">
+        <div>
+          <span>01 / CORE CAPABILITIES</span>
+          <h3>What I bring to the team</h3>
+        </div>
+        <i class="fa-solid fa-arrow-trend-up"></i>
+      </div>
+
+      <div class="rm-capabilities">
+        <div class="rm-capability">
+          <div class="rm-cap-icon"><i class="fa-solid fa-broom"></i></div>
+          <div><h4>Data Cleaning</h4><p>Prepare messy data for reliable analysis.</p></div>
+          <span class="rm-arrow">↗</span>
+        </div>
+        <div class="rm-capability">
+          <div class="rm-cap-icon purple"><i class="fa-solid fa-code"></i></div>
+          <div><h4>SQL Analysis</h4><p>Queries, joins, CTEs & analytical logic.</p></div>
+          <span class="rm-arrow">↗</span>
+        </div>
+        <div class="rm-capability">
+          <div class="rm-cap-icon green"><i class="fa-solid fa-chart-column"></i></div>
+          <div><h4>BI & Visualization</h4><p>Interactive dashboards and KPI storytelling.</p></div>
+          <span class="rm-arrow">↗</span>
+        </div>
+        <div class="rm-capability">
+          <div class="rm-cap-icon orange"><i class="fa-solid fa-lightbulb"></i></div>
+          <div><h4>Business Insights</h4><p>Turn patterns into decision-ready insights.</p></div>
+          <span class="rm-arrow">↗</span>
+        </div>
+      </div>
+
+      <div class="rm-section-head projects-head">
+        <div>
+          <span>02 / SELECTED WORK</span>
+          <h3>Featured analytics projects</h3>
+        </div>
+        <small>3 case studies</small>
+      </div>
+
+      <div class="employer-projects">
+        <div class="employer-project">
+          <div class="employer-project-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+          <div>
+            <div class="rm-project-no">PROJECT 01</div>
+            <h3>E-Commerce Sales Analytics</h3>
+            <p>Sales performance, customer behavior and business insights.</p>
+            <div class="employer-tags"><span>Power BI</span><span>SQL</span><span>Excel</span></div>
+          </div>
+          <span class="rm-project-line"></span>
+        </div>
+
+        <div class="employer-project">
+          <div class="employer-project-icon purple"><i class="fa-solid fa-users"></i></div>
+          <div>
+            <div class="rm-project-no">PROJECT 02</div>
+            <h3>HR Analytics</h3>
+            <p>Workforce trends, attrition analysis and interactive reporting.</p>
+            <div class="employer-tags"><span>Power BI</span><span>Excel</span><span>Analysis</span></div>
+          </div>
+          <span class="rm-project-line"></span>
+        </div>
+
+        <div class="employer-project">
+          <div class="employer-project-icon green"><i class="fa-solid fa-money-bill-trend-up"></i></div>
+          <div>
+            <div class="rm-project-no">PROJECT 03</div>
+            <h3>Financial Transaction Analytics</h3>
+            <p>Transaction analysis, trends, KPIs and decision-ready insights.</p>
+            <div class="employer-tags"><span>SQL</span><span>Power BI</span><span>Excel</span></div>
+          </div>
+          <span class="rm-project-line"></span>
+        </div>
+      </div>
+
+      <div class="rm-bottom">
+        <div class="employer-panel employer-credentials">
+          <div class="employer-panel-title"><span><i class="fa-solid fa-award"></i> Credentials</span><small>PROFILE</small></div>
+          <div class="credential-row"><span>Education</span><b>B.Com (Hons)</b></div>
+          <div class="credential-row"><span>Certification</span><b>Data Analyst</b></div>
+          <div class="credential-row"><span>Additional</span><b>ADCA · Advanced Excel · Power BI</b></div>
+        </div>
+
+        <div class="employer-panel employer-actions">
+          <div class="employer-panel-title"><span><i class="fa-solid fa-bolt"></i> Quick Actions</span><small>READY</small></div>
+          <div class="employer-action-buttons">
+            <a href="#projects" onclick="closeEmployerMode()" class="employer-action primary"><i class="fa-solid fa-folder-open"></i> View Projects</a>
+            <a href="#contact" onclick="closeEmployerMode()" class="employer-action"><i class="fa-solid fa-envelope"></i> Contact Me</a>
+            
+            <a href="https://www.linkedin.com/in/mohd-azeem-508792397?utm_source=share_via&utm_content=profile&utm_medium=member_android" rel="noopener" class="employer-action"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="rm-footer-line">
+        <span><i class="fa-solid fa-circle"></i> AVAILABLE FOR OPPORTUNITIES</span>
+        <span>MOHD AZEEM <b>·</b> DATA ANALYST</span>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- HERO -->
@@ -2073,6 +3203,65 @@ nav a.nav-logo.profile-logo img.nav-profile-photo{width:58px!important;height:58
 </section>
 
 <!-- PROJECTS -->
+
+<!-- HOW I ADD VALUE -->
+<section id="how-i-add-value" class="hiav-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">What I Do for You</div>
+      <h2 class="section-title hiav-title"><span>How I Add</span> <span class="accent">Value</span></h2>
+      <div class="section-divider"></div>
+    </div>
+    <p class="hiav-intro">
+      A practical data workflow that turns raw information into clear, useful business insights.
+    </p>
+
+    <div class="hiav-flow">
+      <div class="hiav-connector"></div>
+
+      <article class="hiav-step">
+        <div class="hiav-number">01 / INPUT</div>
+        <div class="hiav-icon"><i class="fa-solid fa-database"></i></div>
+        <h3>Understand Data</h3>
+        <p>Explore the dataset, business context and key questions before analysis.</p>
+      </article>
+
+      <article class="hiav-step">
+        <div class="hiav-number">02 / CLEAN</div>
+        <div class="hiav-icon"><i class="fa-solid fa-broom"></i></div>
+        <h3>Clean Data</h3>
+        <p>Handle missing values, duplicates, inconsistent formats and data quality issues.</p>
+      </article>
+
+      <article class="hiav-step">
+        <div class="hiav-number">03 / ANALYZE</div>
+        <div class="hiav-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+        <h3>Analyze</h3>
+        <p>Use Excel, SQL and Python to uncover trends, patterns and useful metrics.</p>
+      </article>
+
+      <article class="hiav-step">
+        <div class="hiav-number">04 / VISUALIZE</div>
+        <div class="hiav-icon"><i class="fa-solid fa-chart-column"></i></div>
+        <h3>Visualize</h3>
+        <p>Build clear Power BI dashboards that make complex data easier to understand.</p>
+      </article>
+
+      <article class="hiav-step">
+        <div class="hiav-number">05 / INSIGHT</div>
+        <div class="hiav-icon"><i class="fa-solid fa-lightbulb"></i></div>
+        <h3>Deliver Insights</h3>
+        <p>Translate analysis into concise findings that support better business decisions.</p>
+      </article>
+    </div>
+
+    <div class="hiav-value-strip">
+      <i class="fa-solid fa-arrow-right"></i>
+      RAW DATA &nbsp;→&nbsp; CLEAN DATA &nbsp;→&nbsp; ANALYSIS &nbsp;→&nbsp; DASHBOARD &nbsp;→&nbsp; INSIGHTS
+    </div>
+  </div>
+</section>
+
 <section id="projects">
   <div class="container">
     <div class="section-header reveal">
@@ -2227,30 +3416,33 @@ nav a.nav-logo.profile-logo img.nav-profile-photo{width:58px!important;height:58
               <div class="contact-item-text">+91 7500623340</div>
             </div>
           </a>
-          <a href="#" class="contact-item">
+          <a href="https://www.linkedin.com/in/mohd-azeem-508792397?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="contact-item">
             <div class="contact-item-icon"><i class="fa-brands fa-linkedin"></i></div>
             <div>
               <div class="contact-item-label">LinkedIn</div>
               <div class="contact-item-text">mohd-azeem-508792397</div>
             </div>
           </a>
-          <a href="#" class="contact-item">
-            <div class="contact-item-icon"><i class="fa-brands fa-github"></i></div>
-            <div>
-              <div class="contact-item-label">GitHub</div>
-              <div class="contact-item-text">github.com/mohdazeem7500</div>
-            </div>
-          </a>
+          <a href="https://wa.me/917500623340" class="contact-item whatsapp-contact-item">
+  <div class="contact-item-icon"><i class="fa-brands fa-whatsapp"></i></div>
+  <div>
+    <div class="contact-item-label">WhatsApp</div>
+    <div class="contact-item-text">+91 7500623340</div>
+  </div>
+</a>
         </div>
       </div>
       <div class="contact-right reveal reveal-delay-2">
         <h4>Connect on Social Media</h4>
         <div class="social-links">
-          <a href="https://www.linkedin.com/in/mohd-azeem-508792397?utm_source=share_via&utm_content=profile&utm_medium=member_android" class="social-link"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-          <a href="https://github.com/mohdazeem7500" class="social-link"><i class="fa-brands fa-github"></i> GitHub</a>
-          <a href="#" class="social-link"><i class="fa-brands fa-twitter"></i> Twitter</a>
-          <a href="https://www.instagram.com/known_as_azzu?igsh=MTR6c3NjaGxwZ3poZA==" class="social-link"><i class="fa-brands fa-instagram"></i> Instagram</a>
-        </div>
+          
+          <a href="https://www.instagram.com/azeem.dataanalyst?stkn=MXVrdmc5dGVieWwxcg==" class="social-link"><i class="fa-brands fa-instagram"></i> Instagram</a>
+        
+<a href="https://wa.me/917500623340" class="social-link whatsapp-social">
+  <i class="fa-brands fa-whatsapp"></i>
+  <span>WhatsApp</span>
+</a>
+</div>
         <div class="contact-tagline">
           <strong>"Data is the new oil."</strong> And I'm here to refine it — transforming raw numbers into powerful business insights that drive decisions and create real impact.
           <br><br>
@@ -2269,7 +3461,11 @@ nav a.nav-logo.profile-logo img.nav-profile-photo{width:58px!important;height:58
 <!-- FOOTER -->
 <footer>
   <div>Designed & Built by <a href="#">Mohd Azeem</a> · Aspiring Data Analyst</div>
-  <div style="color:var(--text3)">© 2025 All rights reserved</div>
+  <div style="color:var(--text3)">© 2025 All rights reserved
+
+
+
+</div>
 </footer>
 
 <script>
@@ -2680,6 +3876,38 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 </script>
+
+
+<script>
+/* ── EMPLOYER MODE CONTROLLER ── */
+const employerOverlay = document.getElementById('employerOverlay');
+const employerModeBtn = document.getElementById('employerModeBtn');
+const employerCloseBtn = document.getElementById('employerCloseBtn');
+
+function openEmployerMode() {
+  if (!employerOverlay) return;
+  employerOverlay.classList.add('open');
+  employerOverlay.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+function closeEmployerMode() {
+  if (!employerOverlay) return;
+  employerOverlay.classList.remove('open');
+  employerOverlay.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+if (employerModeBtn) employerModeBtn.addEventListener('click', openEmployerMode);
+if (employerCloseBtn) employerCloseBtn.addEventListener('click', closeEmployerMode);
+if (employerOverlay) employerOverlay.addEventListener('click', e => {
+  if (e.target === employerOverlay) closeEmployerMode();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeEmployerMode();
+});
+</script>
+
+
+</html>
 
 </body>
 </html>
