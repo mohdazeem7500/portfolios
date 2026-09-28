@@ -2605,181 +2605,247 @@ html[data-theme="light"] .rm-footer-line{
 </style>
 
 
-<style id="employer-one-screen-mode">
-/* EMPLOYER MODE — ONE SCREEN / NO INNER SCROLL */
+
+
+
+<style id="employer-mode-clean-fit">
+/* Employer Mode clean fit — preserve original layout, prevent clipping */
 #employerOverlay{
-  padding:12px!important;
+  padding:20px!important;
   overflow:hidden!important;
 }
 #employerOverlay .employer-shell{
-  width:min(1320px,96vw)!important;
-  height:min(760px,calc(100vh - 24px))!important;
-  max-height:calc(100vh - 24px)!important;
+  width:min(1140px,calc(100vw - 40px))!important;
+  max-height:calc(100vh - 40px)!important;
   overflow:hidden!important;
-  display:flex!important;
-  flex-direction:column!important;
-}
-#employerOverlay .employer-topbar{
-  flex:0 0 48px!important;
-  min-height:48px!important;
-  padding:0 18px!important;
 }
 #employerOverlay .employer-content{
-  flex:1 1 auto!important;
-  min-height:0!important;
   overflow:hidden!important;
-  padding:18px 28px 16px!important;
-  display:flex!important;
-  flex-direction:column!important;
-  gap:12px!important;
+  padding:20px 26px 16px!important;
+}
+#employerOverlay .rm-hero{
+  min-width:0!important;
+  overflow:visible!important;
+  align-items:center!important;
+  padding:2px 0 16px!important;
 }
 #employerOverlay .employer-profile{
-  flex:0 0 auto!important;
-  padding:12px 14px!important;
-  min-height:82px!important;
+  min-width:0!important;
+  flex:1 1 auto!important;
+  overflow:visible!important;
 }
-#employerOverlay .employer-profile img{
+#employerOverlay .employer-photo-wrap{
+  flex:0 0 76px!important;
   width:76px!important;
   height:76px!important;
+  min-width:76px!important;
+  min-height:76px!important;
+  padding:3px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+  border-radius:50%!important;
 }
-#employerOverlay .employer-profile h2{
-  font-size:clamp(25px,2.4vw,38px)!important;
-  margin:0!important;
+#employerOverlay .employer-photo-wrap img{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  border-radius:50%!important;
+  object-fit:cover!important;
+  object-position:center 25%!important;
 }
-#employerOverlay .employer-profile p{
-  font-size:11px!important;
-  margin:3px 0!important;
+#employerOverlay .rm-identity{
+  min-width:0!important;
+  flex:1 1 auto!important;
+}
+#employerOverlay .rm-identity h2{
+  white-space:nowrap!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+  font-size:clamp(1.55rem,3vw,2.35rem)!important;
+}
+#employerOverlay .rm-identity p,
+#employerOverlay .employer-location{
+  white-space:normal!important;
+  overflow:visible!important;
+}
+#employerOverlay .employer-location{
+  line-height:1.35!important;
 }
 #employerOverlay .rm-headline{
-  font-size:14px!important;
+  flex:0 0 300px!important;
+  min-width:0!important;
 }
 #employerOverlay .rm-metrics{
-  grid-template-columns:repeat(4,1fr)!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
   gap:10px!important;
-}
-#employerOverlay .rm-metric{
-  min-height:58px!important;
-  padding:9px 12px!important;
-}
-#employerOverlay .rm-metric-icon{
-  width:34px!important;height:34px!important;
-}
-#employerOverlay .rm-metric strong{
-  font-size:13px!important;
-}
-#employerOverlay .rm-metric small{
-  font-size:9px!important;
-}
-#employerOverlay .rm-section{
-  margin-top:4px!important;
-}
-#employerOverlay .rm-section-head{
-  margin-bottom:7px!important;
-}
-#employerOverlay .rm-section-head h3{
-  font-size:20px!important;
 }
 #employerOverlay .rm-capabilities{
-  grid-template-columns:repeat(4,1fr)!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
   gap:10px!important;
-}
-#employerOverlay .rm-capability{
-  min-height:62px!important;
-  padding:10px!important;
-}
-#employerOverlay .rm-cap-icon{
-  width:32px!important;height:32px!important;
-}
-#employerOverlay .rm-capability h4{
-  font-size:12px!important;
-}
-#employerOverlay .rm-capability p{
-  font-size:9px!important;
-  line-height:1.3!important;
-  margin-top:2px!important;
 }
 #employerOverlay .employer-projects{
-  grid-template-columns:repeat(3,1fr)!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
   gap:10px!important;
 }
-#employerOverlay .employer-project{
-  min-height:70px!important;
-  padding:10px!important;
-}
-#employerOverlay .employer-project-icon{
-  width:32px!important;height:32px!important;
-}
-#employerOverlay .employer-project h3{
-  font-size:12px!important;
-}
-#employerOverlay .employer-project p{
-  font-size:9px!important;
-  line-height:1.25!important;
-  margin:2px 0!important;
-}
-#employerOverlay .employer-tags{
-  gap:3px!important;
-}
-#employerOverlay .employer-tags span{
-  font-size:8px!important;
-  padding:2px 5px!important;
-}
-#employerOverlay .rm-bottom-grid{
-  grid-template-columns:1fr 1fr!important;
+#employerOverlay .rm-bottom{
+  grid-template-columns:1.15fr 1fr!important;
   gap:10px!important;
 }
 #employerOverlay .employer-panel{
-  padding:10px 12px!important;
+  min-width:0!important;
 }
-#employerOverlay .employer-panel-title{
-  font-size:11px!important;
+#employerOverlay .employer-project,
+#employerOverlay .rm-capability,
+#employerOverlay .rm-metric{
+  min-width:0!important;
 }
-#employerOverlay .credential-row{
-  font-size:9px!important;
-  padding:3px 0!important;
+#employerOverlay .employer-project h3,
+#employerOverlay .rm-capability h4{
+  white-space:normal!important;
 }
-#employerOverlay .employer-actions{
-  gap:6px!important;
+@media(max-width:900px) and (min-width:701px){
+  #employerOverlay .rm-headline{flex-basis:240px!important}
+  #employerOverlay .employer-content{padding:16px 18px 12px!important}
+  #employerOverlay .employer-profile h2{font-size:1.7rem!important}
 }
-#employerOverlay .employer-action{
-  min-height:30px!important;
-  padding:0 9px!important;
-  font-size:9px!important;
-}
-#employerOverlay .rm-footer{
-  display:none!important;
-}
-
-/* Compact heights for smaller laptop screens */
-@media (max-height:800px) and (min-width:701px){
-  #employerOverlay .employer-content{padding:12px 24px 10px!important;gap:8px!important}
-  #employerOverlay .employer-profile{min-height:68px!important;padding:8px 12px!important}
-  #employerOverlay .employer-profile img{width:62px!important;height:62px!important}
-  #employerOverlay .rm-section-head h3{font-size:17px!important}
-  #employerOverlay .rm-capability{min-height:55px!important;padding:7px 9px!important}
-  #employerOverlay .employer-project{min-height:62px!important;padding:7px 9px!important}
-}
-
-/* Mobile: still no scrolling inside Employer Mode; content is compacted. */
-@media (max-width:700px){
-  #employerOverlay{padding:6px!important}
+@media(max-width:700px){
+  #employerOverlay{padding:8px!important}
   #employerOverlay .employer-shell{
-    width:calc(100vw - 12px)!important;
-    height:calc(100vh - 12px)!important;
-    max-height:calc(100vh - 12px)!important;
-    border-radius:18px!important;
+    width:calc(100vw - 16px)!important;
+    max-height:calc(100vh - 16px)!important;
   }
   #employerOverlay .employer-content{
-    padding:10px 12px!important;
-    gap:7px!important;
+    padding:14px 12px 12px!important;
+    overflow:auto!important;
   }
-  #employerOverlay .employer-profile{min-height:62px!important}
-  #employerOverlay .employer-profile img{width:52px!important;height:52px!important}
-  #employerOverlay .employer-profile h2{font-size:21px!important}
-  #employerOverlay .rm-metrics{gap:6px!important}
-  #employerOverlay .rm-capabilities{grid-template-columns:repeat(2,1fr)!important}
+  #employerOverlay .rm-hero{
+    flex-direction:column!important;
+    align-items:flex-start!important;
+    gap:12px!important;
+  }
+  #employerOverlay .rm-headline{
+    flex-basis:auto!important;
+    width:100%!important;
+    text-align:left!important;
+  }
+  #employerOverlay .employer-photo-wrap{
+    flex-basis:62px!important;
+    width:62px!important;
+    height:62px!important;
+    min-width:62px!important;
+    min-height:62px!important;
+  }
+  #employerOverlay .rm-identity h2{
+    white-space:normal!important;
+    font-size:1.45rem!important;
+  }
+  #employerOverlay .rm-metrics{grid-template-columns:1fr 1fr!important}
+  #employerOverlay .rm-capabilities{grid-template-columns:1fr 1fr!important}
   #employerOverlay .employer-projects{grid-template-columns:1fr!important}
-  #employerOverlay .rm-bottom-grid{grid-template-columns:1fr!important}
+  #employerOverlay .rm-bottom{grid-template-columns:1fr!important}
+}
+</style>
+
+
+<style id="employer-mode-balanced-scroll">
+/* Balanced Employer Mode:
+   Keep the complete layout visible as much as possible, but allow a small
+   internal scroll when the screen height is not enough. */
+#employerOverlay{
+  padding:12px!important;
+  overflow:hidden!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+#employerOverlay .employer-shell{
+  width:min(1140px,calc(100vw - 24px))!important;
+  height:auto!important;
+  max-height:calc(100vh - 24px)!important;
+  overflow:hidden!important;
+}
+#employerOverlay .employer-content{
+  max-height:calc(100vh - 80px)!important;
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  scrollbar-width:thin!important;
+  scrollbar-color:rgba(56,189,248,.55) transparent!important;
+  padding:18px 26px 18px!important;
+}
+#employerOverlay .employer-content::-webkit-scrollbar{
+  width:6px;
+}
+#employerOverlay .employer-content::-webkit-scrollbar-track{
+  background:transparent;
+}
+#employerOverlay .employer-content::-webkit-scrollbar-thumb{
+  background:rgba(56,189,248,.5);
+  border-radius:20px;
+}
+#employerOverlay .employer-content::-webkit-scrollbar-thumb:hover{
+  background:rgba(56,189,248,.8);
+}
+
+/* Slightly tighten vertical spacing so most laptop screens fit everything
+   without needing to scroll. */
+#employerOverlay .rm-hero{
+  padding-bottom:12px!important;
+}
+#employerOverlay .rm-metrics{
+  margin-bottom:2px!important;
+}
+#employerOverlay .rm-section-head{
+  margin-top:4px!important;
+  margin-bottom:8px!important;
+}
+#employerOverlay .rm-capability{
+  padding:9px!important;
+}
+#employerOverlay .employer-project{
+  padding:9px!important;
+}
+#employerOverlay .rm-bottom{
+  margin-top:2px!important;
+}
+#employerOverlay .rm-footer-line{
+  margin-top:8px!important;
+  padding-top:8px!important;
+}
+
+/* On short laptop screens, tighten only spacing — do not shrink the name/photo. */
+@media (max-height:850px) and (min-width:701px){
+  #employerOverlay .employer-content{
+    padding:14px 22px 14px!important;
+  }
+  #employerOverlay .rm-hero{
+    padding-bottom:8px!important;
+  }
+  #employerOverlay .rm-section-head{
+    margin-top:2px!important;
+    margin-bottom:6px!important;
+  }
+  #employerOverlay .rm-capability{
+    padding:8px!important;
+  }
+  #employerOverlay .employer-project{
+    padding:8px!important;
+  }
+}
+
+/* Mobile can naturally scroll because all content cannot fit one screen. */
+@media (max-width:700px){
+  #employerOverlay{
+    padding:6px!important;
+  }
+  #employerOverlay .employer-shell{
+    width:calc(100vw - 12px)!important;
+    max-height:calc(100vh - 12px)!important;
+  }
+  #employerOverlay .employer-content{
+    max-height:calc(100vh - 64px)!important;
+    padding:12px!important;
+  }
 }
 </style>
 
@@ -2801,7 +2867,7 @@ html[data-theme="light"] .rm-footer-line{
     <button class="theme-btn" id="themeBtn" title="Toggle theme"><i class="fa-solid fa-moon"></i></button>
   </div>
   <div style="display:flex;gap:10px;align-items:center;" class="mobile-controls">
-    <button class="theme-btn" id="themeBtnMobile" title="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+    
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
@@ -3472,17 +3538,17 @@ html[data-theme="light"] .rm-footer-line{
 // ── THEME TOGGLE ──
 const html = document.documentElement;
 const themeBtn = document.getElementById('themeBtn');
-const themeBtnM = document.getElementById('themeBtnMobile');
+
 let isDark = true;
 function setTheme(dark) {
   isDark = dark;
   html.setAttribute('data-theme', dark ? 'dark' : 'light');
   const icon = dark ? 'fa-moon' : 'fa-sun';
   themeBtn.innerHTML = `<i class="fa-solid ${icon}"></i>`;
-  themeBtnM.innerHTML = `<i class="fa-solid ${icon}"></i>`;
+  
 }
 themeBtn.addEventListener('click', () => setTheme(!isDark));
-themeBtnM.addEventListener('click', () => setTheme(!isDark));
+
 
 // ── HAMBURGER ──
 const ham = document.getElementById('hamburger');
