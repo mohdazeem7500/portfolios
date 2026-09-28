@@ -2849,6 +2849,59 @@ html[data-theme="light"] .rm-footer-line{
 }
 </style>
 
+
+<style id="employer-photo-frame-final-fix">
+/* FINAL PROFILE PHOTO FRAME FIX */
+#employerOverlay .employer-photo-wrap{
+  position:relative!important;
+  flex:0 0 86px!important;
+  width:86px!important;
+  height:86px!important;
+  min-width:86px!important;
+  min-height:86px!important;
+  max-width:86px!important;
+  max-height:86px!important;
+  padding:4px!important;
+  box-sizing:border-box!important;
+  border-radius:50%!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+  background:linear-gradient(135deg,var(--accent),var(--purple))!important;
+}
+#employerOverlay .employer-photo-wrap img{
+  position:absolute!important;
+  inset:4px!important;
+  width:calc(100% - 8px)!important;
+  height:calc(100% - 8px)!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-width:none!important;
+  max-height:none!important;
+  display:block!important;
+  border-radius:50%!important;
+  object-fit:cover!important;
+  object-position:50% 24%!important;
+  background:var(--surface)!important;
+  overflow:hidden!important;
+}
+#employerOverlay .rm-hero,
+#employerOverlay .employer-profile,
+#employerOverlay .rm-identity{
+  min-width:0!important;
+}
+@media(max-width:700px){
+  #employerOverlay .employer-photo-wrap{
+    flex-basis:68px!important;
+    width:68px!important;
+    height:68px!important;
+    min-width:68px!important;
+    min-height:68px!important;
+    max-width:68px!important;
+    max-height:68px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 
